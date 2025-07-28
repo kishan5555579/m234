@@ -55,8 +55,8 @@ class SMSService {
     try {
       const formattedPhone = this.formatPhoneNumber(phoneNumber);
       const message = `Your fitness session with ${trainerName} has started! Time to get fit! 💪`;
-      
-      if (this.apiKey && process.env.NODE_ENV === 'production') {
+
+      if (this.apiKey && import.meta.env.PROD) {
         return await this.sendViaTwilio(formattedPhone, message);
       } else {
         return await this.simulateSMS(formattedPhone, message);
