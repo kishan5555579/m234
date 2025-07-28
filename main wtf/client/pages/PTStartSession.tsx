@@ -326,11 +326,11 @@ const PTStartSession = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Session Started":
-        return "text-orange-500 bg-orange-50 border-orange-200";
+        return "text-orange-600 bg-orange-50 border-orange-100";
       case "Session Completed":
-        return "text-green-500 bg-green-50 border-green-200";
+        return "text-teal-600 bg-teal-50 border-teal-100";
       case "Session Not Started":
-        return "text-gray-500 bg-gray-50 border-gray-200";
+        return "text-teal-600 bg-teal-50 border-teal-100";
       default:
         return "text-gray-500 bg-gray-50 border-gray-200";
     }
