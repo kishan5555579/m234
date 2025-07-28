@@ -77,15 +77,15 @@ export default function Login() {
               >
                 <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${
                   selectedRole === "admin"
-                    ? "bg-black border-black"
+                    ? "border-gray-300"
                     : "border-gray-300 hover:border-gray-400"
                 }`}>
                   {selectedRole === "admin" && (
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                    <div className="w-8 h-8 rounded-full border-2 border-blue-500"></div>
                   )}
                 </div>
                 <span className={`mt-2 text-sm font-medium ${
-                  selectedRole === "admin" ? "text-black" : "text-gray-500"
+                  selectedRole === "admin" ? "text-blue-500" : "text-gray-500"
                 }`}>
                   ADMIN
                 </span>
@@ -96,15 +96,15 @@ export default function Login() {
               >
                 <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${
                   selectedRole === "pt"
-                    ? "bg-black border-black"
+                    ? "border-gray-300"
                     : "border-gray-300 hover:border-gray-400"
                 }`}>
                   {selectedRole === "pt" && (
-                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                    <div className="w-8 h-8 rounded-full border-2 border-blue-500"></div>
                   )}
                 </div>
                 <span className={`mt-2 text-sm font-medium ${
-                  selectedRole === "pt" ? "text-black" : "text-gray-500"
+                  selectedRole === "pt" ? "text-blue-500" : "text-gray-500"
                 }`}>
                   PT
                 </span>
