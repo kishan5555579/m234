@@ -146,28 +146,30 @@ const PTStartSession = () => {
       return;
     }
 
-    setSelectedTrainer(trainer);
-    setSessionAction("end");
-    setShowOTPModal(true);
-    setOtpTimer(60);
-    setIsTimerActive(true);
-    setOtpLoading(true);
-
-    // Send OTP for session end verification
     try {
-      const result = await sendOTP(trainer.clientPhone || "+1234567890", trainer.id);
-      if (result.success) {
-        toast.success(`OTP sent to ${smsService.getDisplayPhoneNumber(trainer.clientPhone || "+1234567890")}`);
-        console.log("Development OTP:", result.otp); // For development testing
+      const success = await endSession(trainer.id);
+      if (success) {
+        toast.success("Session ended successfully!");
+
+        // Send session completion notification
+        if (trainer.clientPhone) {
+          const duration = trainer.startTime
+            ? Math.floor((new Date().getTime() - trainer.startTime.getTime()) / 60000)
+            : 60;
+          await smsService.sendSessionCompletionNotification(
+            trainer.clientPhone,
+            trainer.trainerName,
+            duration
+          );
+        }
+
+        refreshData();
       } else {
-        toast.error(result.message);
-        setShowOTPModal(false);
+        toast.error("Failed to end session");
       }
     } catch (error) {
-      toast.error("Failed to send OTP");
-      setShowOTPModal(false);
-    } finally {
-      setOtpLoading(false);
+      toast.error("Failed to end session");
+      console.error("Error ending session:", error);
     }
   };
 
