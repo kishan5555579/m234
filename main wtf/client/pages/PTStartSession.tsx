@@ -388,7 +388,7 @@ const PTStartSession = () => {
           {paginatedSessions.map((session) => (
             <div
               key={session.id}
-              className="bg-white rounded-lg border border-gray-200 p-6"
+              className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow"
             >
               {/* Trainer Info */}
               <div className="flex items-center justify-between mb-4">
