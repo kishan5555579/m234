@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useAdminData, SalesRecord } from "@/contexts/AdminDataContext";
 import { useAdminToast } from "@/components/AdminLayout";
 import { Button } from "@/components/ui/button";
