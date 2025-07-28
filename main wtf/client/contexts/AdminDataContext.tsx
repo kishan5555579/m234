@@ -499,6 +499,25 @@ export const AdminDataProvider: React.FC<AdminDataProviderProps> = ({
       });
     }
     refreshStats();
+
+    // Trigger real-time update event
+    window.dispatchEvent(new CustomEvent('clientAdded', { detail: newClient }));
+
+    // Auto-generate a sales record for new client
+    const newSalesRecord: SalesRecord = {
+      id: `sr${Date.now()}`,
+      leadId: `#CM${Math.floor(Math.random() * 10000)}`,
+      personalTrainer: trainer?.name || "Unknown Trainer",
+      trainerAvatar: trainer?.avatar || "",
+      clientName: newClient.name,
+      clientAvatar: newClient.avatar,
+      serviceType: newClient.membershipType || "Personal Training",
+      totalValue: Math.floor(Math.random() * 3000) + 500, // Random value between 500-3500
+      status: "In Progress" as const,
+      payment: "Pending" as const,
+      date: new Date(),
+    };
+    setSalesRecords((prev) => [...prev, newSalesRecord]);
   };
 
   const updateClient = (id: string, updates: Partial<Client>) => {
