@@ -302,7 +302,7 @@ const PTSales: React.FC = () => {
     updateSalesRecord,
     refreshStats,
   } = useAdminData();
-  const toast = useAdminToast();
+  const { toast } = useAdminToast();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
