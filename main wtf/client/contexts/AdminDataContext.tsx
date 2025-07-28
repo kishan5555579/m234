@@ -145,6 +145,20 @@ export const AdminDataProvider: React.FC<AdminDataProviderProps> = ({
     paymentGrowth: 6.08,
   });
 
+  // Listen for PT client additions
+  useEffect(() => {
+    const handlePTClientAdded = (event: CustomEvent) => {
+      const clientData = event.detail;
+      addClient(clientData);
+    };
+
+    window.addEventListener('ptClientAdded', handlePTClientAdded as EventListener);
+
+    return () => {
+      window.removeEventListener('ptClientAdded', handlePTClientAdded as EventListener);
+    };
+  }, []);
+
   // Initialize with mock data
   useEffect(() => {
     const mockTrainers: PersonalTrainer[] = [
