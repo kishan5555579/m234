@@ -18,10 +18,11 @@ export interface OTPData {
 class SMSService {
   private apiKey: string | null = null;
   private baseUrl: string = "https://api.twilio.com/2010-04-01"; // Example Twilio URL
-  
+
   constructor() {
     // In production, get this from environment variables
-    this.apiKey = process.env.TWILIO_API_KEY || null;
+    // Vite uses import.meta.env instead of process.env
+    this.apiKey = import.meta.env.VITE_TWILIO_API_KEY || null;
   }
 
   // Send OTP via SMS
