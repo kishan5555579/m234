@@ -424,23 +424,23 @@ const PTStartSession = () => {
               </div>
 
               {/* Session Details */}
-              <div className="space-y-3 mb-4">
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Session Type</span>
-                  <span className="text-sm font-medium text-gray-900">
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-medium text-gray-500">Session Type</span>
+                  <span className="text-sm font-semibold text-gray-800">
                     {session.sessionType}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600">Total Days</span>
-                  <span className="text-sm font-medium text-gray-900">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-medium text-gray-500">Total Days</span>
+                  <span className="text-sm font-semibold text-gray-800">
                     {session.totalDays}
                   </span>
                 </div>
                 {session.clientPhone && (
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600">Client Phone</span>
-                    <span className="text-sm font-medium text-gray-900">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-gray-500">Client Phone</span>
+                    <span className="text-sm font-semibold text-gray-800">
                       {smsService.getDisplayPhoneNumber(session.clientPhone)}
                     </span>
                   </div>
