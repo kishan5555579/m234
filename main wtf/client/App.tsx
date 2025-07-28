@@ -87,7 +87,11 @@ const PTRoute = ({ children }: { children: React.ReactNode }) => {
 
   if (!user) return <Navigate to="/login" replace />;
   if (user.role !== "pt") return <Navigate to="/dashboard" replace />;
-  return <>{children}</>;
+  return (
+    <PTSessionProvider>
+      {children}
+    </PTSessionProvider>
+  );
 };
 
 // Public Route Component (redirect to dashboard if already logged in)
