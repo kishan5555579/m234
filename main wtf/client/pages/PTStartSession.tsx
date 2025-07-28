@@ -448,39 +448,41 @@ const PTStartSession = () => {
               {/* Action Buttons */}
               <div className="space-y-2">
                 <div className="flex space-x-2">
-                  {session.status === "Session Not Started" && (
-                    <Button
-                      onClick={() => handleStartSession(session)}
-                      className="flex-1 bg-blue-500 hover:bg-blue-600 text-white"
-                    >
-                      START
-                    </Button>
-                  )}
-                  {session.status === "Session Started" && (
-                    <>
-                      <Button
-                        disabled
-                        className="flex-1 bg-orange-500 text-white cursor-not-allowed"
-                      >
-                        RUNNING
-                      </Button>
-                      <Button
-                        onClick={() => handleEndSession(session)}
-                        className="flex-1 bg-red-500 hover:bg-red-600 text-white"
-                      >
-                        END
-                      </Button>
-                    </>
-                  )}
-                  {session.status === "Session Completed" && (
-                    <Button
-                      disabled
-                      className="flex-1 bg-green-500 text-white cursor-not-allowed"
-                    >
-                      <CheckCircle className="w-4 h-4 mr-2" />
-                      COMPLETED
-                    </Button>
-                  )}
+                  <Button
+                    onClick={() => handleStartSession(session)}
+                    disabled={session.status === "Session Started" || session.status === "Session Completed"}
+                    className={cn(
+                      "flex-1",
+                      session.status === "Session Not Started"
+                        ? "bg-blue-500 hover:bg-blue-600 text-white"
+                        : session.status === "Session Started"
+                        ? "bg-orange-500 text-white cursor-not-allowed"
+                        : "bg-gray-400 text-white cursor-not-allowed"
+                    )}
+                  >
+                    {session.status === "Session Started" ? "RUNNING" : "START"}
+                  </Button>
+                  <Button
+                    onClick={() => handleEndSession(session)}
+                    disabled={session.status === "Session Not Started" || session.status === "Session Completed"}
+                    className={cn(
+                      "flex-1",
+                      session.status === "Session Started"
+                        ? "bg-red-500 hover:bg-red-600 text-white"
+                        : session.status === "Session Completed"
+                        ? "bg-green-500 text-white cursor-not-allowed"
+                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    )}
+                  >
+                    {session.status === "Session Completed" ? (
+                      <>
+                        <CheckCircle className="w-4 h-4 mr-2" />
+                        COMPLETED
+                      </>
+                    ) : (
+                      "END"
+                    )}
+                  </Button>
                 </div>
                 <div className="text-center">
                   <Badge
