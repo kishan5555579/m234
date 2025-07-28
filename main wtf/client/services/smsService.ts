@@ -73,15 +73,15 @@ class SMSService {
 
   // Send session completion notification
   async sendSessionCompletionNotification(
-    phoneNumber: string, 
-    trainerName: string, 
+    phoneNumber: string,
+    trainerName: string,
     duration: number
   ): Promise<SMSResponse> {
     try {
       const formattedPhone = this.formatPhoneNumber(phoneNumber);
       const message = `Great job! Your ${duration}-minute session with ${trainerName} is complete. Keep up the great work! 🎉`;
-      
-      if (this.apiKey && process.env.NODE_ENV === 'production') {
+
+      if (this.apiKey && import.meta.env.PROD) {
         return await this.sendViaTwilio(formattedPhone, message);
       } else {
         return await this.simulateSMS(formattedPhone, message);
