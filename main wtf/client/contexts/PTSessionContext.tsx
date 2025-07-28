@@ -326,7 +326,7 @@ export const PTSessionProvider: React.FC<PTSessionProviderProps> = ({ children }
     }
   };
 
-  // End session
+  // End session - removes session from data
   const endSession = async (sessionId: string): Promise<boolean> => {
     try {
       const session = trainerSessions.find(s => s.id === sessionId);
@@ -334,23 +334,15 @@ export const PTSessionProvider: React.FC<PTSessionProviderProps> = ({ children }
         return false;
       }
 
+      // Calculate session duration for notification
       const endTime = new Date();
-      const duration = session.startTime 
+      const duration = session.startTime
         ? Math.floor((endTime.getTime() - session.startTime.getTime()) / 60000) // minutes
         : 0;
 
-      setTrainerSessions(prev => 
-        prev.map(s => 
-          s.id === sessionId 
-            ? { 
-                ...s, 
-                status: "Session Completed" as const,
-                endTime,
-                duration
-              }
-            : s
-        )
-      );
+      // Remove the session from the data instead of marking it completed
+      setTrainerSessions(prev => prev.filter(s => s.id !== sessionId));
+
       return true;
     } catch (error) {
       return false;
