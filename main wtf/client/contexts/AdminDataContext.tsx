@@ -540,6 +540,9 @@ export const AdminDataProvider: React.FC<AdminDataProviderProps> = ({
     };
     setSalesRecords((prev) => [...prev, newRecord]);
     refreshStats();
+
+    // Trigger real-time update event
+    window.dispatchEvent(new CustomEvent('salesRecordAdded', { detail: newRecord }));
   };
 
   const updateSalesRecord = (id: string, updates: Partial<SalesRecord>) => {
