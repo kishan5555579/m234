@@ -376,7 +376,7 @@ export const PTSessionProvider: React.FC<PTSessionProviderProps> = ({ children }
       };
 
       setClients(prev => [...prev, newClient]);
-      
+
       // Auto-create a session for the new client
       const newSession: TrainerSession = {
         id: `session_${Date.now()}`,
@@ -391,6 +391,22 @@ export const PTSessionProvider: React.FC<PTSessionProviderProps> = ({ children }
       };
 
       setTrainerSessions(prev => [...prev, newSession]);
+
+      // Trigger admin data sync for client addition
+      window.dispatchEvent(new CustomEvent('ptClientAdded', {
+        detail: {
+          ...newClient,
+          trainerId: 'pt1', // Current trainer ID - should come from auth context
+          paymentsCollected: 0,
+          paymentsPending: Math.floor(Math.random() * 2000) + 500,
+          status: 'Active' as const,
+          joinDate: new Date(),
+          membershipType: client.sessionType,
+          address: 'Client Address', // Should be collected in form
+          gender: 'Male' as const, // Should be collected in form
+        }
+      }));
+
       return true;
     } catch (error) {
       return false;
