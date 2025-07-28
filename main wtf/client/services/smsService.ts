@@ -34,7 +34,7 @@ class SMSService {
       const message = `Your WTF Fitness session OTP is: ${otp}. This code expires in 5 minutes. Do not share this code with anyone.`;
       
       // In production environment, use real SMS API
-      if (this.apiKey && process.env.NODE_ENV === 'production') {
+      if (this.apiKey && import.meta.env.PROD) {
         return await this.sendViaTwilio(formattedPhone, message);
       } else {
         // For development, simulate SMS sending
