@@ -417,7 +417,7 @@ const PTStartSession = () => {
                       {formatSessionDuration(session)}
                     </div>
                   )}
-                  <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
                     <div className="w-3 h-3 rounded-full bg-white"></div>
                   </div>
                 </div>
