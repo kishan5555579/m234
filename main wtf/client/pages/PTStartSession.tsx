@@ -486,10 +486,10 @@ const PTStartSession = () => {
                     )}
                   </Button>
                 </div>
-                <div className="text-center">
+                <div className="text-center mt-3">
                   <Badge
                     variant="secondary"
-                    className={`${getStatusColor(session.status)} border text-xs`}
+                    className={`${getStatusColor(session.status)} border text-xs font-medium px-3 py-1`}
                   >
                     {session.status}
                   </Badge>
