@@ -300,6 +300,7 @@ const PTSales: React.FC = () => {
     searchSalesRecords,
     addSalesRecord,
     updateSalesRecord,
+    refreshStats,
   } = useAdminData();
   const toast = useAdminToast();
 
