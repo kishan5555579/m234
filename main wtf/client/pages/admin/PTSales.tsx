@@ -317,6 +317,27 @@ const PTSales: React.FC = () => {
   const [showOnlyPaid, setShowOnlyPaid] = useState(false);
   const [selectedRecords, setSelectedRecords] = useState<string[]>([]);
 
+  // Listen for real-time updates
+  useEffect(() => {
+    const handleSalesRecordAdded = (event: CustomEvent) => {
+      toast.success("New sales record added!");
+      refreshStats();
+    };
+
+    const handleClientAdded = (event: CustomEvent) => {
+      toast.success("New client added - sales record generated!");
+      refreshStats();
+    };
+
+    window.addEventListener('salesRecordAdded', handleSalesRecordAdded as EventListener);
+    window.addEventListener('clientAdded', handleClientAdded as EventListener);
+
+    return () => {
+      window.removeEventListener('salesRecordAdded', handleSalesRecordAdded as EventListener);
+      window.removeEventListener('clientAdded', handleClientAdded as EventListener);
+    };
+  }, [toast]);
+
   // Get analytics based on selected time period
   const periodStats = useMemo(() => {
     return getSalesAnalytics(timePeriod);
