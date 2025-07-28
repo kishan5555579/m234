@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { AdminDataProvider } from "@/contexts/AdminDataContext";
+import { PTSessionProvider } from "@/contexts/PTSessionContext";
 import AdminLayout from "@/components/AdminLayout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
