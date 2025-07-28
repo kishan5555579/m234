@@ -449,17 +449,17 @@ const PTStartSession = () => {
 
               {/* Action Buttons */}
               <div className="space-y-2">
-                <div className="flex space-x-2">
+                <div className="flex space-x-3">
                   <Button
                     onClick={() => handleStartSession(session)}
                     disabled={session.status === "Session Started" || session.status === "Session Completed"}
                     className={cn(
-                      "flex-1",
+                      "flex-1 font-medium text-sm",
                       session.status === "Session Not Started"
-                        ? "bg-blue-500 hover:bg-blue-600 text-white"
+                        ? "bg-teal-500 hover:bg-teal-600 text-white border-0"
                         : session.status === "Session Started"
-                        ? "bg-orange-500 text-white cursor-not-allowed"
-                        : "bg-gray-400 text-white cursor-not-allowed"
+                        ? "bg-orange-500 text-white cursor-not-allowed border-0"
+                        : "bg-gray-200 text-gray-400 cursor-not-allowed border-0"
                     )}
                   >
                     {session.status === "Session Started" ? "RUNNING" : "START"}
@@ -468,12 +468,12 @@ const PTStartSession = () => {
                     onClick={() => handleEndSession(session)}
                     disabled={session.status === "Session Not Started" || session.status === "Session Completed"}
                     className={cn(
-                      "flex-1",
+                      "flex-1 font-medium text-sm",
                       session.status === "Session Started"
-                        ? "bg-red-500 hover:bg-red-600 text-white"
+                        ? "bg-teal-500 hover:bg-teal-600 text-white border-0"
                         : session.status === "Session Completed"
-                        ? "bg-green-500 text-white cursor-not-allowed"
-                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        ? "bg-emerald-500 text-white cursor-not-allowed border-0"
+                        : "bg-gray-200 text-gray-400 cursor-not-allowed border-0"
                     )}
                   >
                     {session.status === "Session Completed" ? (
