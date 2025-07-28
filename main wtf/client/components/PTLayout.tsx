@@ -82,7 +82,7 @@ const PTLayout: React.FC<PTLayoutProps> = ({
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F4fd6adf83c1646c6853676927841fb27%2F396c5c8a5717496c9b3846e1a2b79ba1?format=webp&width=800"
               alt="WTF - Win The Fitness"
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
           </div>
 
