@@ -86,12 +86,15 @@ interface ToastContainerProps {
 }
 
 export const ToastContainer: React.FC<ToastContainerProps> = ({
-  toasts,
+  toasts = [],
   onRemove,
 }) => {
+  // Safely handle undefined toasts array
+  const safeToasts = toasts || [];
+
   return (
     <div className="fixed top-4 right-4 z-50 flex flex-col space-y-2">
-      {toasts.map((toast) => (
+      {safeToasts.map((toast) => (
         <Toast key={toast.id} toast={toast} onRemove={onRemove} />
       ))}
     </div>
