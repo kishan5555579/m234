@@ -68,29 +68,47 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Role Toggle */}
+          {/* Role Selection */}
           <div className="mb-8">
-            <div className="flex border border-gray-200 rounded-lg p-1">
-              <button
+            <div className="flex justify-center space-x-8">
+              <div
                 onClick={() => handleRoleSelect("admin")}
-                className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${
+                className="flex flex-col items-center cursor-pointer"
+              >
+                <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${
                   selectedRole === "admin"
-                    ? "bg-blue-500 text-white"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                ADMIN
-              </button>
-              <button
+                    ? "bg-black border-black"
+                    : "border-gray-300 hover:border-gray-400"
+                }`}>
+                  {selectedRole === "admin" && (
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  )}
+                </div>
+                <span className={`mt-2 text-sm font-medium ${
+                  selectedRole === "admin" ? "text-black" : "text-gray-500"
+                }`}>
+                  ADMIN
+                </span>
+              </div>
+              <div
                 onClick={() => handleRoleSelect("pt")}
-                className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${
-                  selectedRole === "pt"
-                    ? "bg-blue-500 text-white"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
+                className="flex flex-col items-center cursor-pointer"
               >
-                PT
-              </button>
+                <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${
+                  selectedRole === "pt"
+                    ? "bg-black border-black"
+                    : "border-gray-300 hover:border-gray-400"
+                }`}>
+                  {selectedRole === "pt" && (
+                    <div className="w-3 h-3 bg-white rounded-full"></div>
+                  )}
+                </div>
+                <span className={`mt-2 text-sm font-medium ${
+                  selectedRole === "pt" ? "text-black" : "text-gray-500"
+                }`}>
+                  PT
+                </span>
+              </div>
             </div>
           </div>
 
