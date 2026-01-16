@@ -59,38 +59,50 @@ export default function Login() {
         <div className="w-full max-w-md">
           {/* Logo */}
           <div className="mb-8">
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-start">
               <img
                 src="https://cdn.builder.io/api/v1/image/assets%2F4fd6adf83c1646c6853676927841fb27%2F396c5c8a5717496c9b3846e1a2b79ba1?format=webp&width=800"
                 alt="WTF - Win The Fitness"
-                className="h-12 w-auto"
+                className="h-20 w-auto"
               />
             </div>
           </div>
 
-          {/* Role Toggle */}
+          {/* Role Selection */}
           <div className="mb-8">
-            <div className="flex border border-gray-200 rounded-lg p-1">
-              <button
+            <div className="flex justify-center space-x-8">
+              <div
                 onClick={() => handleRoleSelect("admin")}
-                className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${
+                className="flex flex-col items-center cursor-pointer"
+              >
+                <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${
                   selectedRole === "admin"
-                    ? "bg-blue-500 text-white"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-              >
-                ADMIN
-              </button>
-              <button
+                    ? "border-blue-500"
+                    : "border-gray-300 hover:border-gray-400"
+                }`}>
+                </div>
+                <span className={`mt-2 text-sm font-medium ${
+                  selectedRole === "admin" ? "text-blue-500" : "text-gray-500"
+                }`}>
+                  ADMIN
+                </span>
+              </div>
+              <div
                 onClick={() => handleRoleSelect("pt")}
-                className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${
-                  selectedRole === "pt"
-                    ? "bg-blue-500 text-white"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
+                className="flex flex-col items-center cursor-pointer"
               >
-                PT
-              </button>
+                <div className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${
+                  selectedRole === "pt"
+                    ? "border-blue-500"
+                    : "border-gray-300 hover:border-gray-400"
+                }`}>
+                </div>
+                <span className={`mt-2 text-sm font-medium ${
+                  selectedRole === "pt" ? "text-blue-500" : "text-gray-500"
+                }`}>
+                  PT
+                </span>
+              </div>
             </div>
           </div>
 
@@ -100,20 +112,7 @@ export default function Login() {
               Login to your account
             </h1>
 
-            {/* Demo Credentials */}
-            <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <h3 className="text-sm font-medium text-blue-900 mb-2">
-                Demo Credentials:
-              </h3>
-              <div className="text-sm text-blue-800 space-y-1">
-                <div>
-                  <strong>PT:</strong> pt@wtf.com / pt123
-                </div>
-                <div>
-                  <strong>Admin:</strong> admin@wtf.com / admin123
-                </div>
-              </div>
-            </div>
+
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (

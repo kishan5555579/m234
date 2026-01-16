@@ -225,7 +225,7 @@ const PersonalTrainers: React.FC = () => {
     deletePersonalTrainer,
     searchPersonalTrainers,
   } = useAdminData();
-  const toast = useAdminToast();
+  const { toast } = useAdminToast();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");

@@ -25,7 +25,7 @@ import {
 
 const CreatePT: React.FC = () => {
   const { addPersonalTrainer } = useAdminData();
-  const toast = useAdminToast();
+  const { toast } = useAdminToast();
   const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = useState(false);

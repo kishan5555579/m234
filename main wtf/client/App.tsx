@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { AdminDataProvider } from "@/contexts/AdminDataContext";
+import { PTSessionProvider } from "@/contexts/PTSessionContext";
 import AdminLayout from "@/components/AdminLayout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -86,7 +87,11 @@ const PTRoute = ({ children }: { children: React.ReactNode }) => {
 
   if (!user) return <Navigate to="/login" replace />;
   if (user.role !== "pt") return <Navigate to="/dashboard" replace />;
-  return <>{children}</>;
+  return (
+    <PTSessionProvider>
+      {children}
+    </PTSessionProvider>
+  );
 };
 
 // Public Route Component (redirect to dashboard if already logged in)

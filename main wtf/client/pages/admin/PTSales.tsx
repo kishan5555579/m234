@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useAdminData, SalesRecord } from "@/contexts/AdminDataContext";
 import { useAdminToast } from "@/components/AdminLayout";
 import { Button } from "@/components/ui/button";
@@ -300,8 +300,9 @@ const PTSales: React.FC = () => {
     searchSalesRecords,
     addSalesRecord,
     updateSalesRecord,
+    refreshStats,
   } = useAdminData();
-  const toast = useAdminToast();
+  const { toast } = useAdminToast();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -316,6 +317,27 @@ const PTSales: React.FC = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showOnlyPaid, setShowOnlyPaid] = useState(false);
   const [selectedRecords, setSelectedRecords] = useState<string[]>([]);
+
+  // Listen for real-time updates
+  useEffect(() => {
+    const handleSalesRecordAdded = (event: CustomEvent) => {
+      toast.success("New sales record added!");
+      refreshStats();
+    };
+
+    const handleClientAdded = (event: CustomEvent) => {
+      toast.success("New client added - sales record generated!");
+      refreshStats();
+    };
+
+    window.addEventListener('salesRecordAdded', handleSalesRecordAdded as EventListener);
+    window.addEventListener('clientAdded', handleClientAdded as EventListener);
+
+    return () => {
+      window.removeEventListener('salesRecordAdded', handleSalesRecordAdded as EventListener);
+      window.removeEventListener('clientAdded', handleClientAdded as EventListener);
+    };
+  }, [toast]);
 
   // Get analytics based on selected time period
   const periodStats = useMemo(() => {
